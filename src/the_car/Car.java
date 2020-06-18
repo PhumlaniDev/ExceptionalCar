@@ -1,9 +1,17 @@
 package the_car;
 
-public class Car {
+public class Car extends CarNotStartedException {
 
     private boolean started =  false;
     private int fuelLevel = 0;
+
+    public Car(String errorMessage) {
+        super(errorMessage);
+    }
+
+    public Car() {
+        super("error");
+    }
 
     public void start() {
         started = true;
@@ -17,22 +25,26 @@ public class Car {
         fuelLevel += 20;
     }
 
-    public boolean drive() {
+    public boolean drive() throws CarNotStartedException {
         if (!started) {
-            return false;
-        }
 
-        if (fuelLevel <= 0) {
-            started = false;
-            fuelLevel = 0;
-            return false;
-        }
+                throw new CarNotStartedException("Driven without being started");
 
-        fuelLevel -= 5;
+            }
 
-        return true;
+            if (fuelLevel <= 0) {
+                started = false;
+                fuelLevel = 0;
+                return false;
+            }
+
+            fuelLevel -= 5;
+            return true;
+
+
+
+
 
     }
-
 
 }

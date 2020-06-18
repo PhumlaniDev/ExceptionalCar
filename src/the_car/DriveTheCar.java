@@ -2,7 +2,7 @@ package the_car;
 
 public class DriveTheCar {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CarNotStartedException {
 
         Car theCar = new Car();
 
